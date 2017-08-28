@@ -1,0 +1,67 @@
+\documentclass [11pt]{article}
+\usepackage[margin=1.0in]{geometry}
+\usepackage[style=mla-new]{biblatex}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\addbibresource{research.bib}
+
+\begin{document}
+\begin{titlepage}
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/umd_logo.jpg} \\ \bigskip
+	\LARGE{Electrical and Computer Engineering Department \\University of Massachusetts Dartmouth}\\
+	\bigskip \bigskip \bigskip
+	\LARGE{Master's of Science \\ Thesis Proposal -- Second Draft} \\
+	\bigskip \bigskip \bigskip
+	\LARGE{\bf Investigating Security Credential Management System (SCMS), Vehicular-PKI} \\ \medskip
+	\LARGE{\bf By Robert Mushrall III}
+
+	\thispagestyle{empty}
+\end{titlepage}
+\setcounter{page}{2}
+
+\tableofcontents
+\pagebreak
+
+\section{Background}
+
+Roadways are currently clogged with vehicles. A VANET will open up communication channels, allowing helpful information to be passed between vehicles, alerting drivers of possible hazards or even adjusting routes to minimize travel time. While helpful information can be passed, malicious information can also easily be passed, causing traffic problems or even tracking drivers. Verifying and authenticating senders and their messages is an excellent step to minimize damage from attackers. The SCMS (Security Credential Management System) is a promising method for exchanging credentials. This thesis will focus on validating the effectiveness of SCMS.
+
+\section{Problem Statement}
+
+One proposed method to exchange keys in a V-PKI environment is SCMS. The complexity of V-PKI makes SCMS needed to be validated to be an effective infrastructure.
+
+\section{Technical Discussion}
+
+Asymmetric keys provide an excellent way to encrypt, decrypt, and sign messages using keys that are easy to distribute. Existing PKI's (Public Key Infrastructure) provide an excellent method of distributing keys without introducing new vulnerabilities. The special nature of vehicles (ie. dynamic movement) making existing PKI's not ideal for VANETs.
+
+\subsection{Technical Challenges}
+Unlike most networks where devices are stationary, devices in a VANET move at high speeds, and in different directions. This dynamic nature means that devices may be neigbors for some distance, or for just a moment \autocite{CommPatterns}. This nature also causes a Doppler shift, requiring the communication devices need to tolerate changes in frequency. The environment itself presents difficulties, such as reflections from buildings or even other vehicles, particularly vehicles that are not part of a VANET.
+
+\subsection{Security Vulnerabilities}
+A VANET has potential for security vulnerabilities. The most significant being the possibility of a malicious or malfunctioning vehicle transmitting false data. This poses a concern because it degrates the VANET's purpose of increasing driver (or driverless car) awareness of surroundings. There are many different types of attacks that fall under this issue, ranging from simply injecting bogus information to falsifying a vehicles location to adjust how data is routed to disrupt service. Another major vulnerability is privacy. In order to verify data comes from a valid source, the sender needs to be authenticated, however this poses a privacy issue.
+
+\section{Approach}
+
+Simulation software will be used to validate SCMS's effectiveness.
+The software that will be used is Veins (version 4.6), OMNet++ (version 5.1-2), and Sumo (version 0.30.0-1). OMNet++ is a network simulator that will be used to simulate the protocol and network stacks. This is where most of the V-PKI under test will be implemented. Veins will be used to simulate cars on a road system. This adds the complexity of moving cars in different directions and adds traffic scenarios. To tie the two together, Sumo will be used.
+
+\section{Works Cited}
+\printbibliography
+
+\section{Schedule and Milestones}
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{l|c}
+		Task & Time \\ \hline \hline
+		Open Topic Presentation & Late September 2017 \\ \hline
+		Progress Report and Presentation & December 2017 \\ \hline
+		Predefense and Progress Report & February 2018 \\ \hline
+		Thesis Defense & April 2018 \\ \hline
+		Thesis Paper & April 2018 \\ \hline
+	\end{tabular}
+	\caption{Timeline}
+\end{table}
+
+\end{document}
