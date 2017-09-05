@@ -1,44 +1,54 @@
 @conference{GeneralPKIC2X,
 	title = {{A} {General} {Public} {Key} {Infrastructure} {For} {Securing} {Car-To-X} {Communication}},
 	author = {Bißmeyer, Norbert and Stübing, Hagen and Schoch, Elmar and Götz, Stefan and Stoltz, Jan Peter and Lonc, Brigitte},
-	booktitle = {ResearchGate}
-	month = oct,
+	booktitle = {18th World Congress on Intelligent Transport Systems},
+	month = {oct},
 	year = {2011},
 	annote = {The authors present a Public Key Infrastructure for the C2C-CC, with functions including message verification, certificate updates and entity revocation. Privacy is achieved using pseudonymization where vehicles change identifiers frequently and unexpectedly, using pseudonyms. This PKI utilizes a Root CA versus having CAs ad-hoc with each other, which lowers effort to a linear amount versus quadratic. Resources are saved by only putting the Certificate issuer in the certificate versus the complete certificate chain. Messages are sent with the public key attached. The pseudonym change frequency is not standardized, but a higher frequency will require more storage on the vehicle. The Signer-ID can be incrypted with the long-term CA's public key to prevent a link between pseudonyms and the long term ID of the sender. Revoking vehicles is done by rejecting the request for new pseudonym certificates. CA certificates must be revoked manually by the PKI administrator and actively distributed throughout the V2X system.}
 }
 
-@book{CommPatterns,
+@article{CommPatterns,
 	title = {{Communication} {Patterns} {in} {VANETs}},
 	author = {Schoch, Elmar and Kargl, Frank and Weber, Michael and Leinmüller, Tim},
 	month = {nov},
 	year = {2008},
+	journal = {IEEE Communications Magazine},
+	pages = {119--125},
+	volume = {08},
 	annote = {Applications in VANET are outlined and described. Active safety uses levels of danger, where low danger involves changing traffic, high danger when applications attempt to prevent collisions, and imminent danger where the vehicle prepares for impact. Public service applications can provide virtual sirens to allow emergency vehicles to get to their destination faster. Improved driving applications can provide help in small traffic situations, such as merging, as well as large-scale traffic situations, such as traffic flow. The network characteristics are also outline and described. Node velocity ranges from zero to more than 200 km/h, providing possible small communication windows and limiting communication due to a doppler shift. Roads can be broken down into three types: dense city roads which provides lots of intersections and interference due to buildings, rural roads which have less dense intersections but may not have enough traffic to form a network, and highways which have large segments, well defined on/off ramps and traffic moves in quasi one-dimension. Node density changes from different situations, where very low traffic density requires every vehicle must transmit and sometimes repeatedly, where very high traffic density requires only a few vehicles must transmit. Several communication patterns are defined, such as beaconing, geobroadcasting, unicast routing, advanced, information dissemination, and information aggregation.}
 }
 
-@book{V_BasedSecOps,
+@proceedings{V_BasedSecOps,
 	title = {{Analysis} {of} {Vehicle-Based} {Security} {Operations}},
 	author = {Carter, Jason and Paul, Nathanael},
+	publisher = {National Highway Transit Safety Authority},
+	year = {2015},
 	annote = {The authors propose using group keys with short-lived pseudonym certificates, with each car having multiple group keys. The authors discuss a group-based VBSS (Vehicle Based Security System) where messages are signed with ECDSA to reduce computation and network usage. Groups also have a group leader to accept and reject group members. The authors also propose using an ASIC to perform trust computation. They state that TPMs are cost effective but will create a bottleneck, while the ARM TrustZone and Hardware Security Modules may meet requrements for VBSS. The authors identify four types of misbehaving vehicles: malicious vehicles, malfunctioning vehicles, environmentally-impacted malfunctioning vehicles and end-of-life vehicles. They suggest that an attacker warning should include at least one of the three operations: local/inherent misbehavior detection, warning transmission, warning processing. When using a group key and a member is revoked, the group key must be changed. The authors provide six abnormal cases of key updates: functioning with old certificates, revocation delay, partially unsynchornized old sender, partially unsynchronized old receiver, unsynchronized old receiver, and unsynchronized old sender.}
 }
 
-@book{SecCredMgr,
+@conference{SecCredMgr,
 	title = {{A} {Security} {Credential} {Management} {System} for {V2V} {Communications}},
 	author = {Whyte, William and Weimerskirch, André and Kumar, Virendra and Hehn, Thorsten},
-	month = dec,
-	year = 2013,
+	month = {dec},
+	booktitle = {2013 IEEE Vehicular Networking Conference},
+	year = {2013},
 	annote = {The authors propose an SCMS (Security Credential Management System), which is a form of PKI. The SCMS is designed to handle attacks on users' privacy from outsiders, insiders and authenticated messages for false warnings. This is done with ``Privacy by Design'' and misbehavior detection/revocation. A CRL (Certificate Revocation List) is maintained and distributed, while an internal black list of devices is used to prevent new certificates from being granted. This system includes the following: SCMS Manager, Certification Services, CRL Store, CLR Broadcast, Devices, Device Configuration Manager, Enrollment CA, Linkage Authority, Location Obscurer Proxy, Misbehavior Authority, Pseudonym CA, Registration Authority and Request Coordination. Butterfly keys are used to reduce workload and network usage. SCMS is designed for the following use cases: getting a device onto SCMS, providing a pseudonym certificate to the device, and misbehavior detection/revocation. The functions must be run as separate organizations to prevent breach of privacy. The authors also provide some potential ways to simplify SCMS.}
 }
 
-@book{SecVANet,
+@article{SecVANet,
 	title = {{Securing} {Vehiclular} {Ad} {Hoc} {Networks}},
 	author = {Raya, Maxim and Hubaux, Jean-Pierre},
 	year = {2007},
+	journal = {Journal of Computer Security},
+	volume = {15},
 	annote = {The authors cover the current state of the art, which may be out of date because the paper was written ten years ago. For applications, they only focus on safety applications, which they put into three clasess: traffic information, general safety, and liability related. The authors define the attacker's model, then describe several basic and several sophisticated attacks. They suggest that message legitimacy is required to protect VANETs from attacks, yet encryption is not needed. Then they propose a few revocation protocols, one for revoking tamper-proof devices, one for using compresesd CRLs, and one for distributing revocations. They also briefly investigate symmetric key methods. They state that using pairwise keys and using the TESLA protocol is not feasible in a VANET but using group keys is possible, the difficult part being when a vehicle leaves a group for any reason. The authors analyze ways to provide authentication, availability, non-repudiation, and anonymity. They also describe implementation limitations. Finally, the authors define several problems that still need to be solved, including secure geocast, resilience to DoS attacks, verifying data, and secure positioning.}
 }
 
-@book{SecVeComs,
+@article{SecVeComs,
 	title = {{Securing} {Vehiclular} {Communications}},
 	author = {Raya, Maxim and Papadimitratos, Panos and Hubaux, Jean-Pierre},
+	journal = {IEEE Wireless Communications},
+	volume = {06},
 	month = oct,
 	year = 2006,
 	annote = {The authors begin by defining vulnerabilities to VANETs, such as jamming, forgery, in-transit traffic tampering, impersonation, privacy violation, and on-board tampering. They also define challenges, such as volatility of the network, the liability and privacy duality, delay-sensitive applications, the large size of the network, and the heterogeneity of devices on the network. Then the authors present their security architecture which comprizes of many parts. The first is the security hardware, which is composed of the event data recorder and the tamper-proof device. The second is a vehicular public key infrastructure, which requires certificate authorities, and a scheme where vehicles authenticate with the CA and with other vehicles. The third is Authentication, which relates to authenticating messages. The fourth is certificate revocation which, instead of distributing CRLs, uses the following protocols: Revocation Protocol of the TPD, Revocation Protocol using Compressed CRL, and Distributed Revocation Protocol. The final is Privacy, which is accomplished by using a set of anonymous keys which get changed regularly. They discuss the state of the art at the time of writing, which is almost eleven years old. Finally, they discuss three areas that need more research: secure positioning for accountability and authorization, data verification to prevent forging attacks, and denial-of-service resilience.}
