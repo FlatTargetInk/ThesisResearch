@@ -1,6 +1,7 @@
-@book{GeneralPKIC2X,
+@conference{GeneralPKIC2X,
 	title = {{A} {General} {Public} {Key} {Infrastructure} {For} {Securing} {Car-To-X} {Communication}},
 	author = {Bißmeyer, Norbert and Stübing, Hagen and Schoch, Elmar and Götz, Stefan and Stoltz, Jan Peter and Lonc, Brigitte},
+	booktitle = {ResearchGate}
 	month = oct,
 	year = {2011},
 	annote = {The authors present a Public Key Infrastructure for the C2C-CC, with functions including message verification, certificate updates and entity revocation. Privacy is achieved using pseudonymization where vehicles change identifiers frequently and unexpectedly, using pseudonyms. This PKI utilizes a Root CA versus having CAs ad-hoc with each other, which lowers effort to a linear amount versus quadratic. Resources are saved by only putting the Certificate issuer in the certificate versus the complete certificate chain. Messages are sent with the public key attached. The pseudonym change frequency is not standardized, but a higher frequency will require more storage on the vehicle. The Signer-ID can be incrypted with the long-term CA's public key to prevent a link between pseudonyms and the long term ID of the sender. Revoking vehicles is done by rejecting the request for new pseudonym certificates. CA certificates must be revoked manually by the PKI administrator and actively distributed throughout the V2X system.}
@@ -49,4 +50,11 @@
 	month = jan,
 	year = 2016,
 	annote = {Standards for secure messaging formats.}
+}
+
+@article{VanetSurvey,
+	title = {{Vehicular} {Networking:} {A} {Survey} {and} {Tutorial} {on} {Requirements}, {Architectures}, {Challenges}, {Standards} {and} {Solutions}},
+	author = {Karagiannis, Georgios and Altintas, Onur and Ekici, Eylem and Heijenk, Geert and Jarupan, Boangoat and Lin, Kenneth and Weil, Timothy},
+	journal = {IEEE Communications Surveys & Tutorials, Accepted for Publication},
+	year = {2011},
 }
