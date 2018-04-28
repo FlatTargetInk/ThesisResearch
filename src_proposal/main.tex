@@ -16,7 +16,7 @@
 	\bigskip 
 	\LARGE{Master's of Science \\ Thesis Proposal -- Second Draft} \\
 	\bigskip 
-	\Huge{\bf Investigating Security Credential Management System (SCMS), Vehicular-PKI} \\ \medskip
+	\Huge{\bf Viral Certificate Revocation List Distribution for VANET} \\ \medskip
 	\LARGE{\bf By Robert Mushrall III}
 
 	\vfill
@@ -55,11 +55,13 @@
 
 With the number of vehicles on the road and the safety risks these vehicles (and their drivers) pose, new technology is needed to reduce accidents and improve travel in terms of congestion control and comfort. A VANET (Vehicular Ad-Hoc NETwork) will open up communication channels allowing helpful information to be passed between vehicles and alerting drivers of possible hazards or even adjusting routes to minimize travel time. This network will be possible with V2V (Vehicle to Vehicle) and V2I (Vehicle to Infrastructure) communication. V2V communication allows vehicles to pass information, such as speed and nearby dangers, between each other. V2I communication allows vehicles to communicate with an infrastructure that may provide extra benefits to a VANET. SCMS (Secure Credential Management System) aims to combine V2V and V2I to effectively transmit accurate traffic information between vehicles.
 
-While helpful information can be passed, nodes may act selfishly and not pass information as they should, and malicious information can even be passed instead, causing effects ranging from traffic problems to causing accidents. In order to reduce the effects of misbehaving nodes, communication needs to be secured and the source needs to be verified. SCMS is a V-PKI (Vehicular Public Key Infrastructure) which aims to implement all requirements of CIA (Confidentiality, Integrity, Availability). Confidentiality can be seen as preserving the privacy of the driver. Integrity refers to messages being sent between vehicles being valid and truthful information. Messages that are malicious but are validated by SCMS would mean SCMS lacks integrity. Availability can be looked at in a couple forms: maintaining low enough overhead to still provide a functional VANET and remain functioning during attacks.
+While helpful information can be passed, nodes may act selfishly and not pass information as they should, and malicious information can even be passed instead, causing effects ranging from traffic problems to causing accidents. In order to reduce the effects of misbehaving nodes, communication needs to be secured and the source needs to be verified. The Security Credential Management System (SCMS) is a V-PKI (Vehicular Public Key Infrastructure) which aims to secure communication between vehicles and between vehicle and infrastructure.
+
+Currently, no CRL (Certificate Revokation List) distribution method has been defined. The problem lies in the size of the CRL along with the small bandwidth between SCMS and the SCMS enabled vehicles.
 
 \section{Problem Statement}{\sechint{One or two sentences that concisely state the problem that will be addressed by the research.}}
 
-The connected nature of a VANET inherently poses security risks. As vehicles become more connected and cars become more autonomous, the effects of these new security risks will become more serious. Currently, there is no established mechanism to effectively secure communication between vehicles. SCMS is a promising V-PKI, and its effectiveness needs to be validated. This thesis will focus on evaluating SCMS in terms of CIA, ensuring that the drivers' privacy is maintained, that messages are valid, and that the system remains available for all valid users.
+Only two methods of removing misbehaving devices exist: adding the device's certificates to the CRL, and not provisioning pseudonym certificates to the device. While the latter is straight forward, it does not provide immediately remove a device from the system. A method for distributing CRLs must be defined that allows updates to be quick, does not overload the finite resource used for V2V and V2I communication, and provides the widest dissemination possible.
 
 \section{Technical Discussion}{\sechint{About one page that presents some of the more important aspects of the proposed research. This should include a summary of the state-of-the-art in the particular research area.}}
 
@@ -78,7 +80,7 @@ There are several solutions to securing communication while preserving privacy. 
 Whyte, Weimerskirch, Kumar and Hehn propose SCMS, the V-PKI that this research will be focused on. This scheme is currently being finalized with the US Department of Transportation \autocite{SecCredMgr}. Figure \ref{scms_overview} represents SCMS as a whole. 
 \begin{figure}[!hb]
 	\centering
-	\includegraphics[width=.8\textwidth]{images/scms_overview.png}
+	\includegraphics[width=.8\textwidth]{images/scms_diagram.png}
 	\caption{SCMS Overview}
 	\label{scms_overview}
 \end{figure}
@@ -99,17 +101,14 @@ The programming language used will be C++ since that is the language OMNet++ sup
 \begin{table}[!ht]
 	\centering
 	\begin{tabular}{l|c}
+		\hline
 		Task & Time \\ \hline \hline
-		Thesis Proposal Submitted & September 12 2017 \\ \hline
-		Open Topic Presentation & Late September 2017 \\ \hline
-		Simulation tests defined & Late September 2017 \\ \hline
-		Simulation tests implemented & October 2017 \\ \hline
-		Simulation structure implemented & November 2017 \\ \hline
-		Progress Report and Presentation & December 2017 \\ \hline
-		Simulation entirely coded, begin testing & January 2017 \\ \hline
-		Predefense and Progress Report & February 2018 \\ \hline
-		Thesis Defense & April 2018 \\ \hline
-		Thesis Paper & April 2018 \\ \hline
+		Updated Proposal Submitted & April 2018 \\ \hline
+		Tests, Criteria Defined & May 2018 \\ \hline
+		Simulations Completed & June 2018 \\ \hline
+		Results Finalized & July 2018 \\ \hline
+		Defense & Early August 2018 \\ \hline
+		Submit Thesis & Mid August 2018 \\ \hline
 	\end{tabular}
 	\caption{Timeline}
 \end{table}
