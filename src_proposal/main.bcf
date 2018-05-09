@@ -1983,16 +1983,12 @@
   <!-- CITATION DATA -->
   <!-- SECTION 0 -->
   <bcf:bibdata section="0">
-    <bcf:datasource type="file" datatype="bibtex">research.bib</bcf:datasource>
+    <bcf:datasource type="file" datatype="bibtex">sources.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">SecCredMgr</bcf:citekey>
-    <bcf:citekey order="2">CommPatterns</bcf:citekey>
-    <bcf:citekey order="3">CommPatterns</bcf:citekey>
-    <bcf:citekey order="4">SecVANet</bcf:citekey>
-    <bcf:citekey order="5">SecVeComs</bcf:citekey>
-    <bcf:citekey order="6">V_BasedSecOps</bcf:citekey>
-    <bcf:citekey order="7">SecCredMgr</bcf:citekey>
+    <bcf:citekey order="1">brecht_scms_nodate</bcf:citekey>
+    <bcf:citekey order="2">haas_efficient_2011</bcf:citekey>
+    <bcf:citekey order="3">brecht_security_2018</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
