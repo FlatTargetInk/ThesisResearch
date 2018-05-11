@@ -17,7 +17,7 @@
 	\includegraphics[width=0.8\textwidth]{images/umd_logo.jpg} \\ \bigskip
 	\LARGE{Electrical and Computer Engineering Department \\University of Massachusetts Dartmouth}\\
 	\bigskip 
-	\LARGE{Master's of Science \\ Thesis Proposal -- Second Draft} \\
+	\LARGE{Master's of Science \\ Thesis Proposal Update -- First Draft} \\
 	\bigskip 
 	\Huge{\bf Viral Certificate Revocation List Distribution for the Security Credential Management System} \\ \medskip
 	\LARGE{\bf By Robert Mushrall III}
@@ -56,7 +56,7 @@
 
 \section{Background}{\sechint{One paragraph (1/3 page) to orient the reader to the area of research.}}
 
-With the number of vehicles on the road and the safety risks these vehicles (and their drivers) pose, new technology is needed to reduce accidents and improve travel in terms of congestion control and comfort. A \gls{vanet} will open up communication channels allowing helpful information to be passed between vehicles and alerting drivers of possible hazards or even adjusting routes to minimize travel time. This network will be possible with V2V (Vehicle to Vehicle) and V2I (Vehicle to Infrastructure) communication. V2V communication allows vehicles to pass information, such as speed and nearby dangers, between each other. V2I communication allows vehicles to communicate with an infrastructure that may provide extra benefits to a \gls{vanet}.
+With the number of vehicles on the road and the safety risks these vehicles (and their drivers) pose, new technology is needed to reduce accidents and improve travel in terms of congestion control and comfort. A \gls{vanet} will open up communication channels through the use of the \gls{bsm}, allowing helpful information to be passed between vehicles and alerting drivers of possible hazards or even adjusting routes to minimize travel time. This network will be possible with V2V (Vehicle to Vehicle) and V2I (Vehicle to Infrastructure) communication. V2V communication allows vehicles to pass information, such as speed and nearby dangers, between each other. V2I communication allows vehicles to communicate with an infrastructure that may provide extra benefits to a \gls{vanet}.
 
 While helpful information can be passed, vehicles may malfunction and attackers can ever cause vehicles to misbehave, which can negatively impact safety, counter to the very reason \gls{vanet} exists. The \gls{scms} is the leading solution to secure \gls{vanet} communication. It includes components common to a Public Key Infrastructure, with the addition of several functions to account for the difference between a traditional network versus a \gls{vanet}. There are two methods for removing malfunctioning or misbehaving vehicles, not provisioning certificates and adding their provisioned certificates to a \gls{crl} so other vehicles know not to trust it.
 
@@ -68,33 +68,32 @@ The current method for distributing \gls{crl}s is not effective for vehicles tha
 
 \section{Technical Discussion}{\sechint{About one page that presents some of the more important aspects of the proposed research. This should include a summary of the state-of-the-art in the particular research area.}}
 
-The highly dynamic nature of \gls{vanet}s presents
+\gls{scms} uses \gls{crl}s that are somewhat different than a typical \gls{crl} used in most forms of \gls{pki}. The use of Pseudonym certificates requires the use of linkage values to feasibly revoke devices. There is currently no permanent method in place, however research has been done previously on a collaborative distribution method.
 
-\subsection{The Security Credential Mangement System}
-Whyte, Weimerskirch, Kumar and Hehn propose \gls{scms}, the \gls{vpki} that this research will be focused on. This scheme is currently being finalized with the US Department of Transportation~\autocite{brecht_security_2018}. Figure~\ref{scms_overview} represents \gls{scms} as a whole. 
+\subsection{The Security Credential Management System}
+Whyte, Weimerskirch, Kumar and Hehn propose \gls{scms}, the \gls{vpki} that this research will be focused on. This scheme is currently being finalized with the US Department of Transportation~\autocite{brecht_security_2018}. Figure~\ref{scms_overview} represents \gls{scms} as a whole, using dashed lines to represent trust, dotted lines to represent out-of-band communication, and solid lines to represent communication. 
 \begin{figure}[!ht]
 	\centering
 	\includegraphics[width=.8\textwidth]{images/scms_diagram.png}
 	\caption{\gls{scms} Overview}
 	\label{scms_overview}
 \end{figure}
-The trust within \gls{scms} begins with the Root CA, which then trusts (shown by the dashed line) the Intermediate CA, the Policy Generator, and the Misbehavior Authority. In turn, the Intermediate CA trusts the Enrollment CA, the Pseudonym CA, the Registration Authority, and the linkage authorities. The end devices, such as the \gls{obe}, \gls{rse} and \gls{asd}, are all trusted by the Enrollment CA and the Pseudonym CA. The electors vote on the Root CA. In the event the Root CA's private key is compromised or expired, the electors will vote on the new Root CA, and all necessary components and end devices will update their trust. The Policy Generator and the Misbehavior Authority intrinsically central (bolded), meaning that only one of these must exist for \gls{scms} to function properly.
+The trust within \gls{scms} begins with the Root CA, which then trusts (shown by the dashed line) the Intermediate CA, the Policy Generator, and the Misbehavior Authority. In turn, the Intermediate CA trusts the Enrollment CA, the Pseudonym CA, the Registration Authority, and the linkage authorities. The end devices, such as the \gls{obe}, \gls{rse} and \gls{asd}, are all trusted by the Enrollment CA and the Pseudonym CA. The electors vote on the Root CA. In the event the Root CA's private key is compromised or expired, the electors will vote on the new Root CA, and all necessary components and end devices will update their trust. The Policy Generator and the Misbehavior Authority intrinsically central (bold), meaning that only one of these must exist for \gls{scms} to function properly.
 
-There are four main use cases with \gls{scms}: device bootstrapping, certificate provisioning, misbehavior reporting, and global misbehavior detection and revocation~\autocite{brecht_security_2018}. Device bootstrapping is the process of initializing the device so it may communicate with \gls{scms}. First, all the necessary certificates needed to communicate with \gls{scms} are loaded onto the the device, such as the Certificate Authorities, the Misbehavior Authority, and the Registration Authority. Next, it gets an enrollment certificate which can be used to communicate with \gls{scms}. Certificate provisioning is the process of providing pseudonym certificates to the device
+There are four main use cases with \gls{scms}: device bootstrapping, certificate provisioning, misbehavior reporting, and global misbehavior detection and revocation~\autocite{brecht_security_2018}. Device bootstrapping is the process of initializing the device so it may communicate with \gls{scms}. First, all the necessary certificates needed to communicate with \gls{scms} are loaded onto the device, such as the Certificate Authorities, the Misbehavior Authority, and the Registration Authority. Next, it gets an enrollment certificate which can be used to communicate with \gls{scms}. Certificate provisioning is the process of providing pseudonym certificates to the device so that it may communicate with other devices anonymously. Misbehavior reporting is the process that vehicles submit reports of misbehaving vehicles to the Misbehavior Authority. Vehicles will have local misbehavior detection, while \gls{scms} will have global misbehavior algorithms that utilize misbehavior reports. This global misbehavior detection and revocation will involve collecting misbehavior reports, determine the devices using the linkage authorities, and revoke the device. Revoking a device involves adding the device to an internal blacklist so that it may not be provisioned new pseudonym certificates, as well as adding the device to the \gls{crl}, so it may be distributed to other devices.
 
-For privacy reasons, \gls{scms} uses pseudonym certificates, which are certificates that vehicles use instead of a singular certificate. This helps obfuscate the identity of the sender of signed messages. To further protect against privacy, \gls{scms} separates operations so that at least two operations need to be compromized before being able to track an individual vehicle. 
+\subsection{CRLs in SCMS}
+Pseudonym certificates make privacy possible in \gls{scms}, however it becomes a nightmare to revoke all certificates associated with one device. Each device will receive enough certificates for twenty to be valid per week, for anywhere between one and three years~\autocite{brecht_security_2018}, meaning roughly 3,000 certificates will need to be revoked for just one device. This problem was solved with linkage values. For each batch of pseudonym certificates, linkage values will be generated based on pre-linkage values. The end result is that only one number is needed to revoke all pseudonym certificates, making \gls{crl}s feasible in \gls{scms}.
 
+\subsection{State of the Art}
+Currently, \gls{crl}s are distributed via an HTTP GET request to an online server~\autocite{brecht_scms_nodate}, however \autocite{brecht_security_2018} state that a \gls{crl} distribution method based on collaborative distribution, proposed by \autocite{haas_efficient_2011} needs to be defined. This paper makes several suggestions as to make revoking pseudonym certificates feasible, which are similar to the solutions that \gls{scms} plan to implement, as well as outline their method for distributing \gls{crl}s. They demonstrate their approach by using a custom simulator accounting for the area surrounding Zurich, Switzerland with roughly 260,000 vehicles, and measured the number of vehicles with the \gls{crl} after initially distributing it~\autocite{haas_efficient_2011}.
 
-\subsection{Technical Challenges}
-
-\subsection{Security Vulnerabilities}
-
-\subsection{Proposed Solutions}
+\subsection{Proposed Method}
+The current proposed method will be an updated version of what was proposed by \autocite{brecht_scms_nodate}. The current \gls{crl} will be broken into two lists: a segmented list, and a delta list. The segmented list will be broken into segments sized to be feasibly broadcasted between vehicles, roughly the same size as a typical \gls{v2v} message. These segments will be versioned and signed by the Misbehavior Authority so the authenticity of the sending vehicle should not need to be verified, only the \gls{crl} itself. The latest version each vehicle has should be broadcasted in each \gls{bsm} so if a listening vehicle notices another vehicle does not have the latest update, it should broadcast the latest segment to the vehicle with the old \gls{crl}. An alternative to this approach is for an out-of-date vehicle to request a \gls{crl} segment when it ``hears'' a vehicle with a later \gls{crl} segment. The delta list will be time-stamped and also signed by the Misbehavior Authority, with the date broadcasted in the \gls{bsm} so listening vehicles can update out-of-date vehicles. Specific details of implementation will be worked out during simulation.
 
 \section{Approach}{\sechint{One paragraph (1/3 page) that describes the methods that will be applied in conducting the research.}}
 
-\gls{scms}'s effectiveness will be evaluated using simulations. The software that will be used is Veins (version 4.6), OMNet++ (version 5.1-2), and Sumo (version 0.30.0-1). OMNet++ is a network simulator that will be used to simulate the protocol and network stacks. This is where most of the \gls{vpki} under test will be implemented. Veins will be used to simulate cars on a road system. This adds the complexity of moving cars in different directions and adds traffic scenarios. To tie the two together, Sumo will be used.
-The programming language used will be C++ since that is the language OMNet++ supports, as well as the popularity of C++ in embedded environments such as where \gls{scms} will likely by implemented. \gls{scms} will be evaluated on three parts: confidentiality, integrity, and availability. Confidentiality will be gauged on the ability to protect vehicles privacy, both from inside attackers and outside attackers. Integrity will be gauged on the ability to prevent invalid information from being spread using authenticated messages. Since \gls{scms} currently doesn't have misbehavior detection, this metric may assume misbehaving nodes and properly functioning nodes are already known. Availability will be measured by the computational overhead \gls{scms} requires, as well as resilience to attacks.
+The method proposed in \autocite{haas_efficient_2011} will be updated for use with the current policies in \gls{scms} and will account for a changing \gls{crl}. This updated method will be evaluated using Veins (v4.6), OMNeT++(v5.1), and SUMO (v0.30). OMNeT++ is a network simulator that will be used to simulate the vehicles and \gls{rse}s, where the proposed \gls{crl} distribution method will reside. SUMO is a road traffic simulator which will be used to simulate movement of vehicles. Veins is a framework that will be used to tie OMNeT++ with SUMO. Simulations will serve two purposes: to debug and fine tune the resulting method, and to evaluate its effectiveness. This method will be evaluated on the number of vehicles with the updated \gls{crl}, similarly to the results in \autocite{haas_efficient_2011}, how continuous updates are handled, and its ability to handle large updates.
 
 \pagebreak
 \section{Works Cited}
@@ -108,12 +107,12 @@ The programming language used will be C++ since that is the language OMNet++ sup
 	\begin{tabular}{l|c}
 		\hline
 		Task & Time \\ \hline \hline
-		Updated Proposal Submitted & April 2018 \\ \hline
-		Tests, Criteria Defined & May 2018 \\ \hline
-		Simulations Completed & June 2018 \\ \hline
-		Results Finalized & July 2018 \\ \hline
-		Defense & Early August 2018 \\ \hline
-		Submit Thesis & Mid August 2018 \\ \hline
+		Updated Proposal Submitted & 18 May 2018 \\ \hline
+		Tests, Criteria Defined & 31 May 2018 \\ \hline
+		Simulations Completed & 30 June 2018 \\ \hline
+		Results Finalized & 14 July 2018 \\ \hline
+		Defense & 1 August 2018 \\ \hline
+		Submit Thesis & 15 August 2018 \\ \hline
 	\end{tabular}
 	\caption{Timeline}
 \end{table}
