@@ -1989,6 +1989,7 @@
     <bcf:citekey order="1">brecht_scms_nodate</bcf:citekey>
     <bcf:citekey order="2">haas_efficient_2011</bcf:citekey>
     <bcf:citekey order="3">brecht_security_2018</bcf:citekey>
+    <bcf:citekey order="4">brecht_security_2018</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
