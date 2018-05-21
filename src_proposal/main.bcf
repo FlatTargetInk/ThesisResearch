@@ -1986,18 +1986,16 @@
     <bcf:datasource type="file" datatype="bibtex">sources.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">brecht_scms_nodate</bcf:citekey>
-    <bcf:citekey order="2">haas_efficient_2011</bcf:citekey>
+    <bcf:citekey order="1">brecht_security_2018</bcf:citekey>
+    <bcf:citekey order="2">brecht_security_2018</bcf:citekey>
     <bcf:citekey order="3">brecht_security_2018</bcf:citekey>
-    <bcf:citekey order="4">brecht_security_2018</bcf:citekey>
+    <bcf:citekey order="4">brecht_scms_nodate</bcf:citekey>
     <bcf:citekey order="5">brecht_security_2018</bcf:citekey>
-    <bcf:citekey order="6">brecht_scms_nodate</bcf:citekey>
-    <bcf:citekey order="7">brecht_security_2018</bcf:citekey>
+    <bcf:citekey order="6">haas_efficient_2011</bcf:citekey>
+    <bcf:citekey order="7">haas_efficient_2011</bcf:citekey>
     <bcf:citekey order="8">haas_efficient_2011</bcf:citekey>
     <bcf:citekey order="9">haas_efficient_2011</bcf:citekey>
-    <bcf:citekey order="10">brecht_scms_nodate</bcf:citekey>
-    <bcf:citekey order="11">haas_efficient_2011</bcf:citekey>
-    <bcf:citekey order="12">haas_efficient_2011</bcf:citekey>
+    <bcf:citekey order="10">haas_efficient_2011</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
