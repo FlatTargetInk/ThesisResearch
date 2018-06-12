@@ -4,6 +4,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{graphicx}
 \usepackage{titlesec}
+\usepackage{tikz}
 \titlespacing*{\section}{0pt}{3ex plus .5ex minus .2ex}{0ex}
 \addbibresource{sources.bib}
 \newcommand{\sechint}[1]{\small{\emph{#1}} \bigskip}
@@ -17,7 +18,7 @@
 	\includegraphics[width=0.8\textwidth]{images/umd_logo.jpg} \\ \bigskip
 	\LARGE{Electrical and Computer Engineering Department \\University of Massachusetts Dartmouth}\\
 	\bigskip 
-	\LARGE{Master's of Science \\ Thesis Proposal Update -- Second Draft} \\
+	\LARGE{Master's of Science \\ Thesis Proposal Update -- Third Draft} \\
 	\bigskip 
 	\Huge{\bf Viral Certificate Revocation List Distribution for the Security Credential Management System} \\ \medskip
 	\LARGE{\bf By Robert Mushrall III}
@@ -88,16 +89,25 @@ Currently, \gls{crl}s are distributed via an HTTP GET request to an online serve
 
 \section{Approach}{\sechint{One paragraph (1/3 page) that describes the methods that will be applied in conducting the research.}}
 
+An initial design has been drafted and is detailed below. The proposed solution will be tested in simulation on its ability to distribute changing \gls{crl}s .
+
 \subsection{Solution: Viral CRL Distribution}
 This proposed method will effectively distribute \gls{crl}s much like a virus; a few \gls{rse}s will ``infect'' nearby vehicles with the current \gls{crl}, who will then infect other vehicles with the current \gls{crl}. To make this feasible for a changing \gls{crl}, extra measures will take place. The first is to break the list into segments. Each segment will be signed by the Misbehavior Authority to ensure integrity, versioned in sequential order, and include an expiration date. The second is to include a second list, as detailed below. Additional measures will be worked out during simulation.
 
-The current proposed method will be an updated version of what was proposed by \autocite{haas_efficient_2011}. The current \gls{crl} will be broken into two lists: a permanent list, and a delta list. The segmented list will be broken into segments sized to be feasibly broadcasted between vehicles, roughly the same size as a typical \gls{bsm}. These segments will be versioned and signed by the Misbehavior Authority so the authenticity of the sending vehicle should not need to be verified, only the \gls{crl} itself. The latest version each vehicle has should be broadcasted in each \gls{bsm} so if a listening vehicle notices another vehicle does not have the latest update, it should broadcast the latest segment of the \gls{crl}. An alternative to this approach is for an out-of-date vehicle to request a \gls{crl} segment when it ``hears'' a vehicle with a later \gls{crl} segment. The delta list will be time-stamped and signed by the Misbehavior Authority, with the date broadcasted in the \gls{bsm} so listening vehicles can update out-of-date vehicles. Specific details of implementation will be worked out during simulation.
+\begin{figure}[!ht]
+	\centering
+	\input{images/incr_update.tex}
+	\caption{Incremental Update}
+	\label{fig:incr_update}
+\end{figure}
+
+The current proposed method will be an updated version of what was proposed by \autocite{haas_efficient_2011}. The current \gls{crl} will be broken into two lists: a permanent list, and a delta list. The \gls{crl} begins as a delta list with one entry, shown in Figure~\ref{fig:incr_update}, which gets proadcasted to devices. As new certificates get added to the list, the updated list gets distributed with an updated time stamp, until it reaches a predetermined size, four in the case of this figure. When it reaches a predetermined size, it becomes a segment in a permanent list and gets distributed with the segment number. When another certificate gets added to the \gls{crl}, it gets added to a new delta list, which will continue to grow until the predetermined size. At this point, it will become the next segment. Each delta list and segment will be signed by the Misbehavior Authority so the authenticity of the sending vehicle should not need to be verified, only the \gls{crl} itself. The latest version each vehicle has should be broadcasted in each \gls{bsm} so if a listening vehicle notices another vehicle does not have the latest update, it should broadcast the latest segment of the \gls{crl}. An alternative to this approach is for an out-of-date vehicle to request a \gls{crl} segment when it ``hears'' a vehicle with a later \gls{crl} segment. The delta list will be time-stamped and signed by the Misbehavior Authority, with the date broadcasted in the \gls{bsm} so listening vehicles can update out-of-date vehicles. Specific details of implementation will be worked out during simulation.
 
 \subsection{Methodology}
 The method proposed in \autocite{haas_efficient_2011} will be updated for use with the current policies in \gls{scms} and will account for a changing \gls{crl}. This updated method will be evaluated using Veins (v4.6), OMNeT++(v5.1), and SUMO (v0.30). OMNeT++ is a network simulator that will be used to simulate the vehicles and \gls{rse}s, where the proposed \gls{crl} distribution method will reside. SUMO is a road traffic simulator which will be used to simulate movement of vehicles. Veins is a framework that will be used to tie OMNeT++ and SUMO together. Simulations will serve two purposes: to debug and fine tune the resulting method, and to evaluate its effectiveness. This method will be evaluated on the number of vehicles with the updated \gls{crl}, similarly to the results in \autocite{haas_efficient_2011}, how continuous updates are handled, and its ability to handle large updates.
 
 \subsection{Validation}
-This research will be limited to simulations performed in software. 
+This research will be limited to simulations performed in software. Experiments will be considered out of scope as it is not feasible. This research will focus on the ability of changing \gls{crl}s to be distributed effectively in a simulated environment. (kind of stumped here...)
 
 \subsection{Potential Contribution}
 This research will fill a void in the current implementation of \gls{scms} by providing a flexible and dependable distribution method for \gls{crl}s that does not require vehicles to maintain an active connection to the internet. This proposed solution adds to the contribution from \autocite{haas_efficient_2011} by adding mechanisms to account for a \gls{crl} too large to be broadcasted, a changing list, and the need to keep \gls{crl}s secure.
